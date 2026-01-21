@@ -1,15 +1,15 @@
 package webdriver;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Set;
 
 public class Topic_05_WebBrowser_Commands {
     //1 - Setup: OS/ Browser/Web/Page/Data/Variable/Object/...
@@ -88,11 +89,13 @@ public class Topic_05_WebBrowser_Commands {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(15));
         driver.manage().timeouts().implicitlyWait(Duration.ofNanos(15));
 
+        WebDriver.Timeouts timeouts = driver.manage().timeouts();
+
         // Dùng để chờ cho việc page được load xong
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
 
         // Dùng để chờ một đoạn script được thực thi xong
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(15));
+        timeouts.scriptTimeout(Duration.ofSeconds(15));
 
         // Thu nhỏ về TaskBar để chạy
         driver.manage().window().minimize();
@@ -108,6 +111,71 @@ public class Topic_05_WebBrowser_Commands {
         //
         driver.manage().window().setPosition(new Point(0,0));
         driver.manage().window().getPosition();
+
+        // Lấy hết tất cả các cookies
+        Set<Cookie> cookies = driver.manage().getCookies();
+
+        driver.manage().getCookieNamed(".Nop.Antiforgery");
+
+        // Xoá hết tất cả các cookies
+        driver.manage().deleteAllCookies();
+
+        for(Cookie cookie : cookies){
+            driver.manage().deleteCookie(cookie);
+        }
+
+        // Xoá Cookie theo tên
+        driver.manage().deleteCookieNamed(".Nop.Antiforgery");
+
+        // Đến 1 Test class khác ( ko cần login - set cookie đã có rồi refresh)
+        for(Cookie cookie : cookies){
+            driver.manage().addCookie(cookie);
+        }
+        driver.navigate().refresh(); // Login thành công
+
+
+        Logs log = driver.manage().logs();
+        LogEntries logEntries = log.get("BROWSER");
+        for (LogEntry logEn : logEntries){
+            System.out.println(logEn);
+        }
+
+        log.getAvailableLogTypes();
+
+        WebDriver.Navigation navigation = driver.navigate();
+        // Refresh/ F5
+        navigation.refresh();
+
+        // Quay lại trang trước đó
+        navigation.back();
+
+        // Chuyển tiếp tới trang trước đó
+        navigation.refresh();
+
+        // Mở URL bất kỳ
+        navigation.to("https://demo.nopcommerce.com/customer/info");
+
+        // Alert / Iframe / Windows (Tabs)
+        WebDriver.TargetLocator targetLocator = driver.switchTo();
+
+        //Alert
+        targetLocator.alert().accept();
+        targetLocator.alert().dismiss();
+
+        // Frame/ Iframe
+        targetLocator.frame("");
+        targetLocator.defaultContent();
+
+        //Windows
+        targetLocator.window("");
+
+        // Lấy ra ID của tab/ window đang active
+        driver.getWindowHandle();
+
+        // Lấy ra tất cả ID của tất cả các tab/ window đang có
+        driver.getWindowHandles();
+
+
 
 
 
