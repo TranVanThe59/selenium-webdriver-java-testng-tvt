@@ -61,7 +61,35 @@ public class Topic_11_Default_Dropdown {
 
     }
     @Test
-    public void TC_02_Login(){
+    public void TC_02_NopCommerce(){
+        driver.get("https://www.nopcommerce.com/");
+
+        driver.findElement(By.cssSelector("a.ico-register")).click();
+
+        driver.findElement(By.cssSelector("input#FirstName")).sendKeys("");
+        driver.findElement(By.cssSelector("input#LastName")).sendKeys("");
+
+        new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthDay']"))).selectByVisibleText("15");
+        new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthMonth']"))).selectByVisibleText("September");
+        new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthYear']"))).selectByVisibleText("2000");
+
+        driver.findElement(By.cssSelector("input#Email")).sendKeys("");
+        driver.findElement(By.cssSelector("input#Company")).sendKeys("");
+        driver.findElement(By.cssSelector("input#Password")).sendKeys("");
+        driver.findElement(By.cssSelector("input#ConfirmPassword")).sendKeys("");
+
+        driver.findElement(By.cssSelector("button#register-button")).click();
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.registration-result-page div.result")).getText(),"You registration completed");
+
+        driver.findElement(By.cssSelector("a.ico-login")).click();
+
+        //Login
+        driver.findElement(By.cssSelector("input#Email")).sendKeys("");
+
+        //My Account
+        driver.findElement(By.cssSelector("input#Email")).sendKeys("");
+
     }
     @AfterClass
     //3 - Clean : Delete data test/ account/ close browser
