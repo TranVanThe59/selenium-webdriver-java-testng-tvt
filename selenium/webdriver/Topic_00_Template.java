@@ -8,23 +8,23 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Topic_00_Template {
     //1 - Setup: OS/ Browser/Web/Page/Data/Variable/Object/...
     WebDriver driver;
     @BeforeClass
 
     public void initialBrowser(){
-        // Mở Browser
         driver = new FirefoxDriver();
-        // Mở App
         driver.get("https://demo.nopcommerce.com/login");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
     @Test
-    //2 - Action/ Execute: Tương tác lên element nào/ nhập liệu/ verify/...
-    public void TC_01_Register(){
+    public void TC_01_(){
     }
     @Test
-    public void TC_02_Login(){
+    public void TC_02_(){
     }
     @AfterClass
     //3 - Clean : Delete data test/ account/ close browser
