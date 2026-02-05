@@ -17,7 +17,6 @@ public class Topic_00_Template {
 
     public void initialBrowser(){
         driver = new FirefoxDriver();
-        driver.get("https://demo.nopcommerce.com/login");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
     @Test

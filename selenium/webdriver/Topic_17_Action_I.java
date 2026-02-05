@@ -1,8 +1,6 @@
 package webdriver;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -24,6 +22,8 @@ public class Topic_17_Action_I {
         driver.manage().window().maximize();
 
         action = new Actions(driver);
+        action.moveByOffset(0,0).perform();
+
     }
     @Test
     public void TC_01_Hover() throws InterruptedException {
@@ -38,7 +38,17 @@ public class Topic_17_Action_I {
         Assert.assertEquals(driver.findElement(By.cssSelector("div.ui-tooltip-content")).getText(),"We ask for your age only for statistical purposes.");
     }
     @Test
-    public void TC_02_(){
+    public void TC_02_Hover_Fahasa() throws InterruptedException {
+        driver.get("https://www.fahasa.com");
+
+        action.moveToElement(driver.findElement(By.cssSelector("span.icon_menu"))).perform();
+        Thread.sleep(2000);
+
+        action.moveToElement(driver.findElement(By.xpath("//span[@text='Hành trang đến trường']"))).perform();
+
+        driver.findElement(By.xpath("//div[@class='fhs_column_stretch']//a[text()='Luyện thi môn Toán']")).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//ol[@class='breadcrumb']//strong[text()='Toán']")).isDisplayed());
     }
     @AfterClass
     //3 - Clean : Delete data test/ account/ close browser
