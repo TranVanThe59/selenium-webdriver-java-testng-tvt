@@ -80,6 +80,30 @@ public class Topic_18_Action_II {
 
     }
 
+    @Test
+    public void TC_04_Right_Click() {
+        driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html");
+
+        //Click chuot phai vao button
+        action.contextClick(driver.findElement(By.cssSelector("span.context-menu-one"))).perform();
+
+        By quitContextBy = By.cssSelector("li.context-menu-icon-quit");
+
+        Assert.assertTrue(driver.findElement(quitContextBy).isDisplayed());
+
+        //Hover mouse
+        action.moveToElement(driver.findElement(quitContextBy)).perform();
+
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.context-menu-icon-quit.context-menu-visible.context-menu-hover")).isDisplayed());
+
+        //Click quit
+        action.click(driver.findElement(quitContextBy)).perform();
+
+        driver.switchTo().alert().accept();
+
+        Assert.assertTrue(driver.findElement(quitContextBy).isDisplayed());
+    }
+
     @AfterClass
     //3 - Clean : Delete data test/ account/ close browser
     public void cleanBrowser(){
