@@ -16,7 +16,7 @@ public class Topic_00_Template {
     @BeforeClass
 
     public void initialBrowser(){
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
     @Test
