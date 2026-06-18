@@ -2,6 +2,7 @@ package webdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -17,7 +18,7 @@ public class Topic_16_Authentication_Alert {
 
     public void initialBrowser(){
         // Mở Browser
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
     }
     @Test
     public void TC_01_Authentication_Url(){
