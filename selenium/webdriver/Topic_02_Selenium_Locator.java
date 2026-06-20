@@ -38,7 +38,7 @@ public class Topic_02_Selenium_Locator {
         // Thẻ - Thuóc tính -Giá trị thuộc tính
         // Tagname - Attribute -Value
 
-        //Xpath: //tagname[@attribute='value'
+        //Xpath: //tagname[@attribute='value']
         //Css: tagname[attribute='value']
 
         //Tương tác lên Email Address
