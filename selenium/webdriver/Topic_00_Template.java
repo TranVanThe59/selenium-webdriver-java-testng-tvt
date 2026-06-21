@@ -18,7 +18,7 @@ public class Topic_00_Template {
     public void initialBrowser(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(13));
     }
     @Test
     public void TC_01_(){
