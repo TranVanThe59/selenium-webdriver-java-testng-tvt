@@ -2,7 +2,7 @@ package testng;
 
 import org.testng.Assert;
 
-public class Topic_01_Assertion {
+public class Topic_00_Assertion {
 
     static void main() {
         // 3 hàm chính để kiểm tra tính đúng đắn của dữ liệu

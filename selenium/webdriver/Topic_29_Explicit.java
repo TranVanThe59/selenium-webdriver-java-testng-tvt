@@ -35,9 +35,9 @@ public class Topic_29_Explicit {
 
         driver.findElement(By.cssSelector("div#start>button")).click();
 
-        WebElement until = explicitWait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("div#finish>h4")));
+        WebElement until = explicitWait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("div#finish>h4"))));
 
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("div#loading")));
+        explicitWait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("div#loading"))));
 
         explicitWait.until(ExpectedConditions.textToBe(By.cssSelector("div#finish>h4"),"Hello World!"));
 
